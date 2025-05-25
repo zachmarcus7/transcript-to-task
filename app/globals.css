@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "sp";
+  src: url("/fonts/sofiapro-light-webfont.woff2") format("woff2"),
+       url("/fonts/sofiapro-light-webfont.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@theme {
+  --breakpoint-1xl: 90rem; /* 1440px */
+  --breakpoint-2-5xl: 108rem; /* 1728px */
+  --breakpoint-3xl: 120rem; /* 1920px */
+  --breakpoint-4xl: 136.25rem; /* 2180px */
+  --font-sp: "sp", sans-serif !important;
+  --color-purpleish-500: rgb(109, 122, 252);
+  --color-purpleish-600: rgb(85, 96, 209);
+}
+
+.landing-gradient {
+  background: linear-gradient(120deg, 
+  rgb(119, 142, 252) 0%, 
+  rgb(154, 175, 248) 50%, 
+  rgb(134, 157, 249) 100%
+  );
+}
