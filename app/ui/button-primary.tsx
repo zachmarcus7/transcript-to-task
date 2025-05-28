@@ -10,7 +10,8 @@ export default function ButtonPrimary({
   large = false,
   uploadIcon = false,
   addIcon = false,
-  backIcon = false
+  backIcon = false,
+  isSubmit = false
 }: {
   text: string;
   onClick: () => void;
@@ -20,6 +21,7 @@ export default function ButtonPrimary({
   uploadIcon?: boolean;
   addIcon?: boolean;
   backIcon?: boolean;
+  isSubmit?: boolean;
 }) {
   const handleClick = () => {
     if (!disabled) onClick();
@@ -28,6 +30,7 @@ export default function ButtonPrimary({
   return (
     <button
       onClick={handleClick}
+      type={isSubmit ? "submit" : "button"}
       className={`
         relative
         bg-purpleish-500

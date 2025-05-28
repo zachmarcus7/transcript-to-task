@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+}
+
+model project {
+  id          Int    @id @default(autoincrement())
+  name        String @db.VarChar(60)
+  description String @db.VarChar(200)
+  tasks       task[] @relation("ProjectTasks")
+
+  @@map("project")
+}
+
+model task {
+  id          Int     @id @default(autoincrement())
+  description String  @db.VarChar(400)
+  priority    Int     @db.SmallInt
+  projectId   Int     @map("project_id")
+  project     project @relation("ProjectTasks", fields: [projectId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "constraint_1")
+
+  @@map("task")
+}
+
+model user {
+  id       Int    @id @default(autoincrement())
+  username String @db.VarChar(30)
+  password String @db.VarChar(60)
+
+  @@map("user")
+}
+
+model user_project {
+  userId     Int @map("user_id")
+  projectId  Int @map("project_id")
+
+  @@id([userId, projectId])
+  @@map("user_project")
+}
