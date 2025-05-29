@@ -8,10 +8,12 @@ datasource db {
 }
 
 model project {
-  id          Int    @id @default(autoincrement())
-  name        String @db.VarChar(60)
-  description String @db.VarChar(200)
-  tasks       task[] @relation("ProjectTasks")
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(60)
+  description String   @db.VarChar(200)
+  priority    Int?
+  archived    Boolean?
+  tasks       task[]   @relation("ProjectTasks")
 
   @@map("project")
 }
@@ -21,6 +23,7 @@ model task {
   description String  @db.VarChar(400)
   priority    Int     @db.SmallInt
   projectId   Int     @map("project_id")
+  status      String  @default("in_progress")
   project     project @relation("ProjectTasks", fields: [projectId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "constraint_1")
 
   @@map("task")
@@ -35,8 +38,8 @@ model user {
 }
 
 model user_project {
-  userId     Int @map("user_id")
-  projectId  Int @map("project_id")
+  userId    Int @map("user_id")
+  projectId Int @map("project_id")
 
   @@id([userId, projectId])
   @@map("user_project")

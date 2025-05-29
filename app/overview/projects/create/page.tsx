@@ -1,9 +1,14 @@
 "use client";
 
+import { useActionState } from 'react';
 import { redirect } from 'next/navigation';
-import ButtonPrimary from "@/app/ui/button-primary"
+import ButtonPrimary from "@/app/ui/button-primary";
+import { createProject, State } from '@/app/lib/actions/projects';
 
 export default function Page() {
+  const initialState: State = { message: null, errors: {} };
+  const [state, formAction] = useActionState(createProject, initialState);
+
   return (
     <>
       <div className="pb-6">
@@ -14,27 +19,48 @@ export default function Page() {
         />
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm p-5">
-        <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">Create New Project</h5>
-        <h6 className="text-sm text-slate-500 font-medium pb-5">Create project name and add a description</h6>
+      <div className="bg-white rounded-2xl shadow-sm p-6">
+        <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">Add New Project</h5>
+        <h6 className="text-sm text-slate-500 font-medium pb-5">Create new project that tasks can be added to</h6>
 
-        <input
-          className="w-full h-12 md:w-[500px] border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
-          placeholder="Project Name"
-        ></input>
+         <form action={formAction}>
 
-        <input
-          className="w-full h-12 mt-4 border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
-          placeholder="Project Description"
-        ></input>
+          <input
+            name="name"
+            className="w-full lg:w-60 h-12 md:w-[500px] border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600 mr-4"
+            placeholder="Project Name"
+            maxLength={60}
+            required
+          ></input>
 
-        <div className="flex justify-end mt-4">
-          <ButtonPrimary
-            text="Add"
-            onClick={() => { }}
-            addIcon={true}
-          ></ButtonPrimary>
-        </div>
+          <input
+            name="priority"
+            className="w-full lg:w-60 h-12 md:w-[500px] border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
+            placeholder="Priority (1 - 4)"
+            type="number"
+            max="4"
+            min="1"
+            required
+          ></input>
+
+          <textarea
+            name="description"
+            className="w-full h-36 pt-4 mt-4 border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600 resize-none"
+            placeholder="Task Description"
+            maxLength={200}
+            required
+          ></textarea>
+
+          <div className="flex justify-end mt-4">
+            <ButtonPrimary
+              isSubmit={true}
+              text="Create"
+              onClick={() => { }}
+              addIcon={true}
+            ></ButtonPrimary>
+          </div>
+
+        </form> 
 
       </div>
     </>

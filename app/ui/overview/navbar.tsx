@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
-import ButtonPrimary from '@/app/ui/button-primary';
 import ButtonSecondary from '@/app/ui/button-secondary';
 
 export default function Navbar() {

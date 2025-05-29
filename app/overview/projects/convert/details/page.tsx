@@ -6,7 +6,7 @@ import ButtonPrimary from "@/app/ui/button-primary"
 export default function Page() {
   return (
     <>
-      <div className="bg-white rounded-2xl shadow-sm p-5">
+      <div className="bg-white rounded-2xl shadow-sm p-6">
         <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">Converstion Results</h5>
         <h6 className="text-sm text-slate-500 font-medium pb-5">View AI recommendations for parsed tasks from the transcript below. Use the right checkboxes to select which tasks to add to the project.</h6>
 

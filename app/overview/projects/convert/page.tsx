@@ -14,7 +14,7 @@ export default function Page() {
         />
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm p-5">
+      <div className="bg-white rounded-2xl shadow-sm p-6">
         <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">Convert Task Transcript</h5>
         <h6 className="text-sm text-slate-500 font-medium pb-5">Upload task transcript to view AI-parsed task list</h6>
 

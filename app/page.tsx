@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import Login from '@/app/ui/login';
-import SignInContainer from '@/app/ui/sign-in-container';
+import SignInContainer from '@/app/ui/sign-in/sign-in-container';
 
 export default function Page() {
   return (

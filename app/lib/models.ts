@@ -2,6 +2,8 @@ export type Project = {
   id: number;
   name: string;
   description: string | null;
+  priority: number | null;
+  archived: boolean | null;
 }
 
 export type Task = {
@@ -9,6 +11,7 @@ export type Task = {
   description: string;
   priority: number;
   projectId: number;
+  status?: string;
 }
 
 export type User = {

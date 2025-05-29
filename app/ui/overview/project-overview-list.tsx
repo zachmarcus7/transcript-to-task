@@ -1,14 +1,10 @@
-import { fetchProjects } from "@/app/lib/data";
-import ProjectOverview from "@/app/ui/overview/project-overview";
+import { fetchProjects } from "@/app/lib/data/projects";
+import ProjectOverviewMasonry from './project-overview-masonry';
 
 export default async function ProjectOverviewList() {
   const projects = await fetchProjects();
 
   return (
-    <>
-      {projects.map(project => (
-        <ProjectOverview key={project.id} projectDetails={project} />
-      ))}
-    </>
+    <ProjectOverviewMasonry projects={projects} />
   );
 }
