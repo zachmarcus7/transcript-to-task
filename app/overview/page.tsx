@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import ProjectOverviewList from "@/app/ui/overview/project-overview-list";
+import ProjectOverviewsContainer from "@/app/ui/projects/project-overviews-container";
 import OverviewHeader from "@/app/ui/overview/overview-header";
 
 export default function Page() {
@@ -7,7 +7,7 @@ export default function Page() {
     <>
       <OverviewHeader />
       <Suspense fallback={<>Loading...</>}>
-        <ProjectOverviewList />
+        <ProjectOverviewsContainer />
       </Suspense>
     </>
   );
