@@ -11,7 +11,7 @@ export type Task = {
   description: string;
   priority: number;
   projectId: number;
-  status?: string;
+  status: string;
 }
 
 export type User = {

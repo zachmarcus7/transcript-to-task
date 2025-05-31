@@ -14,6 +14,7 @@
   --breakpoint-3xl: 120rem; /* 1920px */
   --breakpoint-4xl: 136.25rem; /* 2180px */
   --font-sp: "sp", sans-serif !important;
+  --color-blueish-300: rgb(127, 180, 255);
   --color-purpleish-500: rgb(109, 122, 252);
   --color-purpleish-600: rgb(85, 96, 209);
 }

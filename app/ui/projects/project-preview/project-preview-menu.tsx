@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { redirect } from 'next/navigation';
 import { EllipsisVerticalIcon, PencilIcon, BookmarkIcon, PlusIcon } from '@heroicons/react/24/outline';
 
-export default function ProjectOverviewMenu({
+export default function ProjectPreviewMenu({
   projectId
 }: {
   projectId: number;
@@ -12,6 +12,9 @@ export default function ProjectOverviewMenu({
   const [open, setOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * 
+   */
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -35,16 +38,7 @@ export default function ProjectOverviewMenu({
 
       {open && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl border border-slate-100 shadow-2xl z-10 overflow-hidden">
-
-          <button
-            className="flex gap-3 text-sm text-slate-500 font-medium w-full text-left p-3 transition ease cursor-pointer hover:bg-gray-100"
-            type="button"
-            onClick={() => { redirect(`/overview/projects/${projectId}/tasks/create`) }}
-          >
-            <PlusIcon height={20} width={20} />
-            <span>Add New Task</span>
-          </button>
-
+          
           <button
             className="flex gap-3 text-sm text-slate-500 font-medium w-full text-left p-3 transition ease cursor-pointer hover:bg-gray-100"
             type="button"

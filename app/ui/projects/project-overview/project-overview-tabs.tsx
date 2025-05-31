@@ -8,7 +8,7 @@ export default function ProjectOverviewTabs({
   onTabChange: (newTab: 'in_progress' | 'pending' | 'complete') => void;
 }) {
   return (
-    <ul className="flex gap-4 bg-slate-100 rounded-md py-1 px-2 w-fit">
+    <ul className="flex gap-4 bg-slate-100 rounded-md py-2 px-2 w-fit mb-2">
       <li
         onClick={() => { onTabChange('in_progress') }}
         className={`text-sm text-slate-500 font-medium cursor-pointer rounded-sm p-1 min-w-24 flex justify-center transition ease ${currentTab === 'in_progress' ? 'bg-white shadow-md' : 'hover:bg-slate-200'}`}

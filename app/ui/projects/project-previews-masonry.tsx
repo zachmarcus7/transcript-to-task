@@ -1,7 +1,7 @@
 "use client";
 
 import { Masonry } from 'react-plock';
-import ProjectOverview from "@/app/ui/projects/project-overview/project-overview";
+import ProjectPreview from "@/app/ui/projects/project-preview/project-preview";
 import { ProjectTaskDTO } from '@/app/lib/dtos';
 
 export default function ProjectOverviewsMasonry({
@@ -20,7 +20,7 @@ export default function ProjectOverviewsMasonry({
       }}
       render={(project) => (
         <div key={project.id}>
-          <ProjectOverview projectDetails={project} />
+          <ProjectPreview projectDetails={project} />
         </div>
       )}
     />

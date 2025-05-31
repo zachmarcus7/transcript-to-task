@@ -7,7 +7,7 @@ import ButtonSecondary from '@/app/ui/button-secondary';
 export default function Navbar() {
   return (
     <div className="w-full flex justify-center shadow-sm bg-white py-6 pb-4 mb-2">
-      <div className="w-full max-w-[1728px] flex justify-between items-center px-8 2-5xl:pl-2 2-5xl:pr-0">
+      <div className="w-full max-w-[1600px] flex justify-between items-center px-8 2-5xl:pl-2 2-5xl:pr-0">
 
         {/* Left Portion */}
         <div className="flex">

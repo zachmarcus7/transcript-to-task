@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { redirect } from 'next/navigation';
 import { ProjectTaskDTO } from '@/app/lib/dtos';
 import { deleteTask, editTaskStatus } from '@/app/lib/actions/tasks';
-import ProjectOverviewTasks from '@/app/ui/projects/project-overview/project-overview-tasks';
-import ProjectOverviewTabs from '@/app/ui/projects/project-overview/project-overview-tabs';
-import ButtonPrimary from '@/app/ui/button-primary';
+import ProjectPreviewMenu from '@/app/ui/projects/project-preview/project-preview-menu';
+import ButtonSecondary from '@/app/ui/button-secondary';
+import TaskBubblesList from '@/app/ui/projects/project-preview/task-bubbles-list';
 
-export default function ProjectOverview({
+export default function ProjectPreview({
   projectDetails
 }: {
   projectDetails: ProjectTaskDTO
@@ -76,45 +76,34 @@ export default function ProjectOverview({
   };
 
   return (
-    <>
+    <div className="bg-white rounded-2xl shadow-sm p-7">
 
-      <div className="pb-6">
-        <ButtonPrimary
-          text="Back"
-          onClick={() => { redirect(`/overview`) }}
-          backIcon={true}
-        />
+      {/* Header */}
+      <div className="flex justify-between pb-2">
+        <div className="flex gap-2 items-center">
+          <h5 className="text-lg text-slate-700 font-sp font-extrabold">{projectDetails.name}</h5>
+        </div>
+        <div className="flex gap-1 items-center">
+          <div className={`text-xs bg-purpleish-500/20 rounded-full text-purpleish-600 w-fit px-3 py-0.5 font-medium`}>High Priority</div>
+          <ProjectPreviewMenu projectId={projectDetails.id} />
+        </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm p-7">
+      {/* Sub-header */}
+      <h6 className="text-sm text-slate-400 font-medium pb-5 mr-10 leading-6">{projectDetails.description}</h6>
 
-        <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">{projectDetails.name}</h5>
-        <h6 className="text-sm text-slate-500 font-medium pb-5">{projectDetails.description}</h6>
-
-
-        <div className="flex justify-between">
-        <ProjectOverviewTabs
-          currentTab={tab}
-          onTabChange={handleTabChange}
-        />
-
-          <ButtonPrimary 
-            onClick={() => {redirect(`/overview/projects/${projectDetails.id}/tasks/create`)}}
-            text="Add Task"
-            addIcon={true}
+      {/* Body */}
+      <div className="flex justify-between items-end">
+        <TaskBubblesList tasks={projectDetails.tasks} />
+        <div className="w-full flex justify-end">
+          <ButtonSecondary
+            text='View Tasks'
+            onClick={() => { redirect(`/overview/projects/${projectDetails.id}/tasks/overview`) }}
+            small={true}
           />
         </div>
-
-        <ProjectOverviewTasks
-          tasks={tasks}
-          currentTab={tab}
-          projectDetails={projectDetails}
-          currentTaskAction={currentTaskAction}
-          selectedTask={selectedTask}
-          handleTaskUpdate={handleTaskUpdate}
-        />
-
       </div>
-    </>
+
+    </div>
   );
 }

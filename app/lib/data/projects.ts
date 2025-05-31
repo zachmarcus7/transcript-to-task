@@ -38,6 +38,32 @@ export async function fetchProjects(): Promise<ProjectTaskDTO[]> {
  * 
  * @returns 
  */
+export async function fetchProjectWithTasks(projectId: number): Promise<ProjectTaskDTO | null> {
+  try {
+    const project = await prisma.project.findUnique({
+      where: { id: projectId },
+      include: {
+        tasks: {
+          orderBy: [
+            { priority: 'asc' },
+            { description: 'asc' }
+          ]
+        }
+      }
+    });
+    return project;
+  } catch (error) {
+    console.error('Prisma Error:', error);
+    return null;
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+/**
+ * 
+ * @returns 
+ */
 export async function fetchProject(projectId: number): Promise<Project | null> {
   try {
     const project = await prisma.project.findUnique({

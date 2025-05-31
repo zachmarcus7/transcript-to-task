@@ -7,13 +7,15 @@ export default function ButtonSecondary({
   onClick,
   disabled = false,
   loading = false,
-  signOutIcon = false
+  signOutIcon = false,
+  small = false
 }: {
   text: string;
   onClick: () => void;
   disabled?: boolean;
   loading?: boolean;
   signOutIcon?: boolean;
+  small?: boolean;
 }) {
   const handleClick = () => {
     if (!disabled) onClick();
@@ -24,17 +26,15 @@ export default function ButtonSecondary({
       onClick={handleClick}
       className={`
         relative
-        rounded-full
-        font-bold 
+        rounded-full 
         hover:bg-slate-200
         transition-all ease
         flex
         justify-center
         items-center
         border
-        border-slate-300
-        lg:w-48
-        lg:h-10
+        border-slate-200
+        ${small ? 'w-32 h-7' : 'w-48 h-10'}
         ${(disabled || loading) ? 'cursor-not-allowed bg-purpleish-600' : 'cursor-pointer'}
       `}
     >
@@ -46,7 +46,7 @@ export default function ButtonSecondary({
         />
       }
 
-      {!loading &&<span className="text-slate-700 text-base">{text}</span>}
+      {!loading &&<span className={`${small ? 'text-slate-600 text-sm font-medium' : 'text-slate-700 text-base font-bold'}`}>{text}</span>}
 
       {loading && <div className="loader-circle"></div>}
     </button>

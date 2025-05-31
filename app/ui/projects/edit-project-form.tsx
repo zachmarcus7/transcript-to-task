@@ -63,7 +63,7 @@ export default function EditProjectForm({
           <div className="flex justify-end mt-4">
             <ButtonPrimary
               isSubmit={true}
-              text="Create"
+              text="Save"
               onClick={() => { }}
               addIcon={true}
             ></ButtonPrimary>
