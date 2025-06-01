@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
+import { UserCircleIcon } from '@heroicons/react/24/outline';
 import ButtonSecondary from '@/app/ui/button-secondary';
 
 export default function Navbar() {
@@ -26,6 +27,15 @@ export default function Navbar() {
 
         {/* Right Links */}
         <div className="flex gap-5">
+
+          <div className="p-3 border border-slate-200 rounded-full">
+            <UserCircleIcon
+              height={30}
+              width={30}
+              className="text-slate-500"
+            />
+          </div>
+          
 
           <ButtonSecondary
             text="Sign out"

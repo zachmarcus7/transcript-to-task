@@ -40,16 +40,17 @@ export default function EditProjectForm({
             defaultValue={project.name}
           ></input>
 
-          <input
+          <select
             name="priority"
-            className="w-full lg:w-60 h-12 md:w-[500px] border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
-            placeholder="Priority (1 - 4)"
-            type="number"
-            max="4"
-            min="1"
+            className="appearance-none bg-none w-full lg:w-60 h-12 md:w-[500px] border border-slate-200 rounded-xl px-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
             required
             defaultValue={project.priority ?? 1}
-          ></input>
+          >
+            <option value={4}>Low</option>
+            <option value={3}>Medium</option>
+            <option value={2}>High</option>
+            <option value={1}>Critical</option>
+          </select>
 
           <textarea
             name="description"
@@ -65,7 +66,6 @@ export default function EditProjectForm({
               isSubmit={true}
               text="Save"
               onClick={() => { }}
-              addIcon={true}
             ></ButtonPrimary>
           </div>
 

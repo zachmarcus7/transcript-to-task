@@ -7,6 +7,7 @@ import { deleteTask, editTaskStatus } from '@/app/lib/actions/tasks';
 import ProjectOverviewTasks from '@/app/ui/projects/project-overview/project-overview-tasks';
 import ProjectOverviewTabs from '@/app/ui/projects/project-overview/project-overview-tabs';
 import ButtonPrimary from '@/app/ui/button-primary';
+import PriorityBadge from '../../priority-badge';
 
 export default function ProjectOverview({
   projectDetails
@@ -88,18 +89,22 @@ export default function ProjectOverview({
 
       <div className="bg-white rounded-2xl shadow-sm p-7">
 
-        <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">{projectDetails.name}</h5>
+        <div className="flex justify-between">
+          <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">{projectDetails.name}</h5>
+          <PriorityBadge priority={projectDetails.priority} showPriority={true} />
+        </div>
+
         <h6 className="text-sm text-slate-500 font-medium pb-5">{projectDetails.description}</h6>
 
 
         <div className="flex justify-between">
-        <ProjectOverviewTabs
-          currentTab={tab}
-          onTabChange={handleTabChange}
-        />
+          <ProjectOverviewTabs
+            currentTab={tab}
+            onTabChange={handleTabChange}
+          />
 
-          <ButtonPrimary 
-            onClick={() => {redirect(`/overview/projects/${projectDetails.id}/tasks/create`)}}
+          <ButtonPrimary
+            onClick={() => { redirect(`/overview/projects/${projectDetails.id}/tasks/create`) }}
             text="Add Task"
             addIcon={true}
           />

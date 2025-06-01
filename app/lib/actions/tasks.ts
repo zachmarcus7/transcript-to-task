@@ -60,8 +60,8 @@ export async function createTask(projectId: number, prevState: State, formData: 
     };
   }
 
-  revalidatePath('/overview');
-  redirect('/overview');
+  revalidatePath(`/overview/projects/${projectId}`);
+  redirect(`/overview/projects/${projectId}`);
 }
 
 /**
@@ -103,8 +103,8 @@ export async function editTask(taskId: number, prevState: State, formData: FormD
     };
   }
 
-  revalidatePath('/overview');
-  redirect('/overview');
+  revalidatePath(`/overview/projects/${formData.get('projectId')}`);
+  redirect(`/overview/projects/${formData.get('projectId')}`);
 }
 
 /**

@@ -15,12 +15,14 @@ export default function EditTaskForm({
   const editTaskWithId = editTask.bind(null, task.id!);
   const [state, formAction] = useActionState(editTaskWithId, initialState);
 
+  console.log(task.priority);
+
   return (
     <>
       <div className="pb-6">
         <ButtonPrimary
           text="Back"
-          onClick={() => { redirect(`/overview`) }}
+          onClick={() => { redirect(`/overview/projects/${task.projectId}`) }}
           backIcon={true}
         />
       </div>
@@ -31,16 +33,17 @@ export default function EditTaskForm({
 
          <form action={formAction}>
 
-          <input
+          <select
             name="priority"
-            className="w-full lg:w-60 h-12 md:w-[500px] border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
-            placeholder="Priority (1 - 4)"
-            type="number"
-            max="4"
-            min="1"
+            className="appearance-none bg-none w-full lg:w-60 h-12 md:w-[500px] border border-slate-200 rounded-xl px-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
             required
             defaultValue={task.priority}
-          ></input>
+          >
+            <option value={4}>Low</option>
+            <option value={3}>Medium</option>
+            <option value={2}>High</option>
+            <option value={1}>Critical</option>
+          </select>
 
           <textarea
             name="description"
@@ -50,12 +53,14 @@ export default function EditTaskForm({
             defaultValue={task.description}
           ></textarea>
 
+          {/* Used with Redirection */}
+          <input type="hidden" name="projectId" value={task.projectId} />
+
           <div className="flex justify-end mt-4">
             <ButtonPrimary
               isSubmit={true}
               text="Save"
               onClick={() => { }}
-              addIcon={true}
             ></ButtonPrimary>
           </div>
 

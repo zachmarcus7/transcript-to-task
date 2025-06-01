@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRightEndOnRectangleIcon } from '@heroicons/react/24/outline';
+import { ArrowRightEndOnRectangleIcon, ChevronRightIcon, PlusIcon } from '@heroicons/react/24/outline';
 
 export default function ButtonSecondary({
   text,
@@ -8,6 +8,8 @@ export default function ButtonSecondary({
   disabled = false,
   loading = false,
   signOutIcon = false,
+  forwardIcon = false,
+  addIcon = false,
   small = false
 }: {
   text: string;
@@ -15,6 +17,8 @@ export default function ButtonSecondary({
   disabled?: boolean;
   loading?: boolean;
   signOutIcon?: boolean;
+  forwardIcon?: boolean;
+  addIcon?: boolean;
   small?: boolean;
 }) {
   const handleClick = () => {
@@ -34,7 +38,7 @@ export default function ButtonSecondary({
         items-center
         border
         border-slate-200
-        ${small ? 'w-32 h-7' : 'w-48 h-10'}
+        ${small ? 'w-34 h-7' : 'w-48 h-10'}
         ${(disabled || loading) ? 'cursor-not-allowed bg-purpleish-600' : 'cursor-pointer'}
       `}
     >
@@ -46,9 +50,26 @@ export default function ButtonSecondary({
         />
       }
 
+      {addIcon && 
+        <PlusIcon 
+          height={14} 
+          width={14}
+          className="text-slate-500 absolute left-2"
+        />
+      }
+
       {!loading &&<span className={`${small ? 'text-slate-600 text-sm font-medium' : 'text-slate-700 text-base font-bold'}`}>{text}</span>}
 
       {loading && <div className="loader-circle"></div>}
+
+      {forwardIcon && 
+        <ChevronRightIcon 
+          height={14} 
+          width={14}
+          className="text-slate-500 absolute right-2"
+        />
+      }
+
     </button>
   );
 }

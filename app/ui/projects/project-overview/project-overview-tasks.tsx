@@ -5,6 +5,7 @@ import { CheckIcon, PencilIcon } from '@heroicons/react/24/outline';
 import TooltipContainer from '@/app/ui/tooltip';
 import { Task } from '@/app/lib/models';
 import { ProjectTaskDTO } from '@/app/lib/dtos';
+import ProjectOverviewTaskPriority from './project-overview-task-priority';
 
 export default function ProjectOverviewTasks({
   tasks,
@@ -25,9 +26,13 @@ export default function ProjectOverviewTasks({
     <ul className="pt-3">
 
       {tasks.map(task => (
-        <li key={task.id} className={`flex gap-4 w-full shadow-sm rounded-md mb-2 overflow-hidden ${task.status !== currentTab && 'hidden'}`}>
-          <div className="text-purpleish-500 font-extrabold bg-purpleish-500/20 p-3">{task.priority}</div>
+        <li key={task.id} className={`flex gap-4 w-full shadow-sm rounded-md mb-2 overflow-hidden cursor-pointer hover:bg-slate-50 transition ease ${task.status !== currentTab && 'hidden'}`}>
+
+          <ProjectOverviewTaskPriority  priority={task.priority} />
+
           <p className="text-sm text-slate-400 w-full p-3">{task.description}</p>
+
+          {/* Right Actions */}
           <div className="flex gap-2 p-3">
 
             <TooltipContainer message="Edit Task">
