@@ -1,4 +1,4 @@
-import { Task } from "@/app/lib/models";
+import { Task } from "@/app/lib/types";
 import TaskBubbles from "@/app/ui/projects/project-preview/task-bubbles";
 
 export default function TaskBubblesList({ 

@@ -1,64 +1,37 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
 import { redirect } from 'next/navigation';
-import { EllipsisVerticalIcon, PencilIcon, BookmarkIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { EllipsisVerticalIcon, PencilIcon, BookmarkIcon } from '@heroicons/react/24/outline';
+import DropdownMenu from '@/app/ui/dropdown-menu';
+import { MenuItem } from '@/app/lib/types';
+import { archiveProject } from '@/app/lib/actions/projects';
 
 export default function ProjectPreviewMenu({
   projectId
 }: {
   projectId: number;
 }) {
-  const [open, setOpen] = useState<boolean>(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const handleEdit = () => {
+    redirect(`/overview/projects/${projectId}/edit`)
+  }
 
-  /**
-   * 
-   */
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    };
+  const handleArchive = () => {
+    archiveProject(projectId);
+  }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  const menuItems: MenuItem[] = [
+    { icon: <PencilIcon height={15} width={15} />, label: 'Edit Project', onClick: handleEdit },
+    { icon: <BookmarkIcon height={15} width={15} />, label: 'Archive Project', onClick: handleArchive }
+  ];
 
   return (
-    <div className="relative" ref={menuRef}>
-
-      <EllipsisVerticalIcon
-        onClick={() => setOpen(!open)}
+    <DropdownMenu
+      toggle={<EllipsisVerticalIcon
         height={25}
         width={25}
         className="text-slate-400 cursor-pointer transition ease hover:bg-slate-200 rounded-full"
-      />
-
-      {open && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl border border-slate-100 shadow-2xl z-10 overflow-hidden">
-          
-          <button
-            className="flex gap-3 text-sm text-slate-500 font-medium w-full text-left p-3 transition ease cursor-pointer hover:bg-gray-100"
-            type="button"
-            onClick={() => { redirect(`/overview/projects/${projectId}/edit`) }}
-          >
-            <PencilIcon height={20} width={20} />
-            <span>Edit Details</span>
-          </button>
-
-          <button
-            className="flex gap-3 text-sm text-slate-500 font-medium w-full text-left p-3 transition ease cursor-pointer hover:bg-gray-100"
-            type="button"
-            onClick={() => { }}
-          >
-            <BookmarkIcon height={20} width={20} />
-            <span>Archive Project</span>
-          </button>
-
-        </div>
-      )}
-    </div>
+      />}
+      items={menuItems}
+    />
   );
 }

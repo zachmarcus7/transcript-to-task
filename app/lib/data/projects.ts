@@ -1,8 +1,7 @@
 'use server';
 
 import { PrismaClient } from '@prisma/client';
-import { ProjectTaskDTO } from '@/app/lib/dtos';
-import { Project } from '@/app/lib/models';
+import { ProjectTaskDTO, Project } from '@/app/lib/types';
 
 const prisma = new PrismaClient();
 
@@ -10,9 +9,12 @@ const prisma = new PrismaClient();
  * 
  * @returns 
  */
-export async function fetchProjects(): Promise<ProjectTaskDTO[]> {
+export async function fetchProjects(active: boolean): Promise<ProjectTaskDTO[]> {
   try {
     const projects = await prisma.project.findMany({
+      where: {
+        archived: !active
+      },
       include: {
         tasks: {
           orderBy: [

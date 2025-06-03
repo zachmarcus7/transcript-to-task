@@ -8,12 +8,12 @@ datasource db {
 }
 
 model project {
-  id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(60)
-  description String   @db.VarChar(200)
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(60)
+  description String  @db.VarChar(200)
   priority    Int?
-  archived    Boolean?
-  tasks       task[]   @relation("ProjectTasks")
+  archived    Boolean @default(false)
+  tasks       task[]  @relation("ProjectTasks")
 
   @@map("project")
 }

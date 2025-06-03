@@ -2,10 +2,20 @@
 
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
-import { UserCircleIcon } from '@heroicons/react/24/outline';
-import ButtonSecondary from '@/app/ui/button-secondary';
+import { ArrowRightEndOnRectangleIcon } from '@heroicons/react/24/outline';
+import DropdownMenu from '@/app/ui/dropdown-menu';
+import NavbarUserIcon from '@/app/ui/overview/navbar-user-icon';
+import { MenuItem } from '@/app/lib/types';
 
 export default function Navbar() {
+  const signout = () => {
+    redirect(`/`)
+  }
+
+  const menuItems: MenuItem[] = [
+    { icon: <ArrowRightEndOnRectangleIcon height={15} width={15} />, label: 'Sign Out', onClick: signout }
+  ];
+
   return (
     <div className="w-full flex justify-center shadow-sm bg-white py-6 pb-4 mb-2">
       <div className="w-full max-w-[1600px] flex justify-between items-center px-8 2-5xl:pl-2 2-5xl:pr-0">
@@ -26,23 +36,12 @@ export default function Navbar() {
         </div>
 
         {/* Right Links */}
-        <div className="flex gap-5">
-
-          <div className="p-3 border border-slate-200 rounded-full">
-            <UserCircleIcon
-              height={30}
-              width={30}
-              className="text-slate-500"
-            />
-          </div>
-          
-
-          <ButtonSecondary
-            text="Sign out"
-            onClick={() => { redirect("/") }}
-            signOutIcon={true}
-          ></ButtonSecondary>
-
+        <div className="flex items-center gap-3">
+          <p className="max-lg:invisible text-slate-400 font-medium text-sm">Username</p>
+          <DropdownMenu 
+            toggle={<NavbarUserIcon />}
+            items={menuItems}
+          />
         </div>
 
       </div>

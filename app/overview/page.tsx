@@ -5,9 +5,9 @@ import OverviewHeader from "@/app/ui/overview/overview-header";
 export default function Page() {
   return (
     <>
-      <OverviewHeader />
+      <OverviewHeader displayActive={true} />
       <Suspense fallback={<>Loading...</>}>
-        <ProjectPreviewsContainer />
+        <ProjectPreviewsContainer displayActive={true} />
       </Suspense>
     </>
   );

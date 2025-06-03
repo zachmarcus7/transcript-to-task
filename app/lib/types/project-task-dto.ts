@@ -1,4 +1,4 @@
-import { Task } from "@/app/lib/models";
+import { Task } from "@/app/lib/types";
 
 export type ProjectTaskDTO = {
   id: number;

@@ -3,8 +3,7 @@
 import { redirect } from 'next/navigation';
 import { CheckIcon, PencilIcon } from '@heroicons/react/24/outline';
 import TooltipContainer from '@/app/ui/tooltip';
-import { Task } from '@/app/lib/models';
-import { ProjectTaskDTO } from '@/app/lib/dtos';
+import { ProjectTaskDTO, Task } from '@/app/lib/types';
 import ProjectOverviewTaskPriority from './project-overview-task-priority';
 
 export default function ProjectOverviewTasks({
@@ -30,7 +29,7 @@ export default function ProjectOverviewTasks({
 
           <ProjectOverviewTaskPriority  priority={task.priority} />
 
-          <p className="text-sm text-slate-400 w-full p-3">{task.description}</p>
+          <p className="text-sm text-slate-400 w-full p-3 mt-0.5">{task.description}</p>
 
           {/* Right Actions */}
           <div className="flex gap-2 p-3">

@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { ProjectTaskDTO } from '@/app/lib/dtos';
+import { ProjectTaskDTO } from '@/app/lib/types';
 import ButtonSecondary from '@/app/ui/button-secondary';
 import PriorityBadge from '@/app/ui/priority-badge';
 import ProjectPreviewMenu from '@/app/ui/projects/project-preview/project-preview-menu';

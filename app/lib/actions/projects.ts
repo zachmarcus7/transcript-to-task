@@ -110,3 +110,31 @@ export async function editProject(projectId: number, prevState: State, formData:
   revalidatePath('/overview');
   redirect('/overview');
 }
+
+/**
+ * 
+ * @param projectId 
+ * @param prevState 
+ * @param formData 
+ * @returns 
+ */
+export async function archiveProject(projectId: number) {
+  try {
+    await prisma.project.update({
+      where: {
+        id: projectId
+      },
+      data: {
+        archived: true
+      }
+    });
+  } catch (error) {
+    console.error('Prisma Error:', error);
+    return {
+      message: 'Database Error: Failed to Archive Project.',
+    };
+  }
+
+  revalidatePath('/overview');
+  redirect('/overview');
+}

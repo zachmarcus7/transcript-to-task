@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRightEndOnRectangleIcon, ChevronRightIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { ArrowRightEndOnRectangleIcon, ChevronDownIcon, ChevronRightIcon, PlusIcon } from '@heroicons/react/24/outline';
 
 export default function ButtonSecondary({
   text,
@@ -9,6 +9,7 @@ export default function ButtonSecondary({
   loading = false,
   signOutIcon = false,
   forwardIcon = false,
+  downIcon = false,
   addIcon = false,
   small = false
 }: {
@@ -18,6 +19,7 @@ export default function ButtonSecondary({
   loading?: boolean;
   signOutIcon?: boolean;
   forwardIcon?: boolean;
+  downIcon?: boolean;
   addIcon?: boolean;
   small?: boolean;
 }) {
@@ -64,6 +66,14 @@ export default function ButtonSecondary({
 
       {forwardIcon && 
         <ChevronRightIcon 
+          height={14} 
+          width={14}
+          className="text-slate-500 absolute right-2"
+        />
+      }
+
+      {downIcon && 
+        <ChevronDownIcon 
           height={14} 
           width={14}
           className="text-slate-500 absolute right-2"
