@@ -3,17 +3,11 @@
 import { useActionState } from 'react';
 import { redirect } from 'next/navigation';
 import ButtonPrimary from "@/app/ui/button-primary";
-import { editProject, State } from '@/app/lib/actions/projects';
-import { Project } from '@/app/lib/types';
+import { createProject, State } from '@/app/lib/actions/projects';
 
-export default function EditProjectForm({
-  project
-}: {
-  project: Project
-}) {
+export default function Page() {
   const initialState: State = { message: null, errors: {} };
-  const editProjectWithId = editProject.bind(null, project.id);
-  const [state, formAction] = useActionState(editProjectWithId, initialState);
+  const [state, formAction] = useActionState(createProject, initialState);
 
   return (
     <>
@@ -26,8 +20,8 @@ export default function EditProjectForm({
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm p-6">
-        <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">Edit {project.name}</h5>
-        <h6 className="text-sm text-slate-500 font-medium pb-5">Edit the selected project's details below</h6>
+        <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">Add New Project</h5>
+        <h6 className="text-sm text-slate-500 font-medium pb-5">Create new project that tasks can be added to</h6>
 
          <form action={formAction}>
 
@@ -37,14 +31,12 @@ export default function EditProjectForm({
             placeholder="Project Name"
             maxLength={60}
             required
-            defaultValue={project.name}
           ></input>
 
           <select
             name="priority"
             className="appearance-none bg-none w-full lg:w-60 h-12 md:w-[500px] border border-slate-200 rounded-xl px-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
             required
-            defaultValue={project.priority ?? 1}
           >
             <option value={4}>Low</option>
             <option value={3}>Medium</option>
@@ -58,14 +50,14 @@ export default function EditProjectForm({
             placeholder="Task Description"
             maxLength={200}
             required
-            defaultValue={project.description ?? ""}
           ></textarea>
 
           <div className="flex justify-end mt-4">
             <ButtonPrimary
               isSubmit={true}
-              text="Save"
+              text="Create"
               onClick={() => { }}
+              addIcon={true}
             ></ButtonPrimary>
           </div>
 

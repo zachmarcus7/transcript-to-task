@@ -19,7 +19,7 @@ export default function CreateTaskForm({
       <div className="pb-6">
         <ButtonPrimary
           text="Back"
-          onClick={() => { redirect(`/overview`) }}
+          onClick={() => { redirect(`/projects`) }}
           backIcon={true}
         />
       </div>

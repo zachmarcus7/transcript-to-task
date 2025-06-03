@@ -48,7 +48,7 @@ export default function CreateAccountForm({
       <div className="mt-10 w-full flex justify-center items-center">
         <ButtonPrimary 
           text="Create Account" 
-          onClick={() => { redirect("/overview") }}
+          onClick={() => { redirect("/projects") }}
           large={true}
         />
       </div>

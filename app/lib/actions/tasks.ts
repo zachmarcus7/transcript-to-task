@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { PrismaClient } from '@prisma/client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { z } from 'zod';
 
 const prisma = new PrismaClient();
@@ -54,14 +55,12 @@ export async function createTask(projectId: number, prevState: State, formData: 
       }
     });
   } catch (error) {
-    console.error('Prisma Error:', error);
-    return {
-      message: 'Database Error: Failed to Create Task.',
-    };
+    const prismaError = error as PrismaClientKnownRequestError;
+    console.log(prismaError.stack);
   }
 
-  revalidatePath(`/overview/projects/${projectId}`);
-  redirect(`/overview/projects/${projectId}`);
+  revalidatePath(`/projects/${projectId}`);
+  redirect(`/projects/${projectId}`);
 }
 
 /**
@@ -97,14 +96,12 @@ export async function editTask(taskId: number, prevState: State, formData: FormD
       }
     });
   } catch (error) {
-    console.error('Prisma Error:', error);
-    return {
-      message: 'Database Error: Failed to Edit Task.',
-    };
+    const prismaError = error as PrismaClientKnownRequestError;
+    console.log(prismaError.stack);
   }
 
-  revalidatePath(`/overview/projects/${formData.get('projectId')}`);
-  redirect(`/overview/projects/${formData.get('projectId')}`);
+  revalidatePath(`/projects/${formData.get('projectId')}`);
+  redirect(`/projects/${formData.get('projectId')}`);
 }
 
 /**
@@ -126,10 +123,8 @@ export async function editTaskStatus(taskId: number, newStatus: string) {
       }
     });
   } catch (error) {
-    console.error('Prisma Error:', error);
-    return {
-      message: 'Database Error: Failed to Edit Task.',
-    };
+    const prismaError = error as PrismaClientKnownRequestError;
+    console.log(prismaError.stack);
   }
 }
 
@@ -144,9 +139,7 @@ export async function deleteTask(taskId: number) {
       where: { id: taskId }
     });
   } catch (error) {
-    console.error('Prisma Error:', error);
-    return {
-      message: 'Database Error: Failed to Delete Task.',
-    };
+    const prismaError = error as PrismaClientKnownRequestError;
+    console.log(prismaError.stack);
   }
 }

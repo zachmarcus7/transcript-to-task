@@ -4,7 +4,7 @@ import { useActionState } from 'react';
 import { redirect } from 'next/navigation';
 import ButtonPrimary from "@/app/ui/button-primary"
 import { editTask, State } from '@/app/lib/actions/tasks';
-import { Task } from '@/app/lib/models';
+import { Task } from '@/app/lib/types';
 
 export default function EditTaskForm({
   task
@@ -22,7 +22,7 @@ export default function EditTaskForm({
       <div className="pb-6">
         <ButtonPrimary
           text="Back"
-          onClick={() => { redirect(`/overview/projects/${task.projectId}`) }}
+          onClick={() => { redirect(`/projects/${task.projectId}`) }}
           backIcon={true}
         />
       </div>

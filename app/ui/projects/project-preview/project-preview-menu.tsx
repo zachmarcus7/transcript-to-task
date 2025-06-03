@@ -1,28 +1,45 @@
 'use client';
 
 import { redirect } from 'next/navigation';
-import { EllipsisVerticalIcon, PencilIcon, BookmarkIcon } from '@heroicons/react/24/outline';
+import { EllipsisVerticalIcon, PencilIcon, BookmarkIcon, CheckBadgeIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import DropdownMenu from '@/app/ui/dropdown-menu';
 import { MenuItem } from '@/app/lib/types';
-import { archiveProject } from '@/app/lib/actions/projects';
+import { archiveProject, activateProject, deleteProject } from '@/app/lib/actions/projects';
 
 export default function ProjectPreviewMenu({
-  projectId
+  projectId,
+  displayArchiveMenu
 }: {
   projectId: number;
+  displayArchiveMenu: boolean;
 }) {
   const handleEdit = () => {
-    redirect(`/overview/projects/${projectId}/edit`)
+    redirect(`/projects/${projectId}/edit`);
   }
 
   const handleArchive = () => {
     archiveProject(projectId);
   }
 
-  const menuItems: MenuItem[] = [
-    { icon: <PencilIcon height={15} width={15} />, label: 'Edit Project', onClick: handleEdit },
-    { icon: <BookmarkIcon height={15} width={15} />, label: 'Archive Project', onClick: handleArchive }
+  const handleActivate = () => {
+    activateProject(projectId);
+  }
+
+  const handleDelete = () => {
+    deleteProject(projectId);
+  }
+
+  let menuItems: MenuItem[] = [
+    { icon: <PencilIcon height={20} width={20} />, label: 'Edit Project', onClick: handleEdit },
+    { icon: <BookmarkIcon height={20} width={20} />, label: 'Archive Project', onClick: handleArchive }
   ];
+
+  if (displayArchiveMenu) {
+    menuItems = [
+      { icon: <CheckBadgeIcon height={20} width={20} />, label: 'Activate Project', onClick: handleActivate },
+      { icon: <XCircleIcon height={20} width={20} />, label: 'Delete Project', onClick: handleDelete }
+    ];
+  }
 
   return (
     <DropdownMenu

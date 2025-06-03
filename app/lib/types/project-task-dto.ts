@@ -6,4 +6,5 @@ export type ProjectTaskDTO = {
   description: string | null;
   priority: number | null;
   tasks: Task[];
+  archived: boolean;
 };

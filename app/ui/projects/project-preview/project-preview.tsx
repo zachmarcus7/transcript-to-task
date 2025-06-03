@@ -20,7 +20,10 @@ export default function ProjectPreview({
         </div>
         <div className="flex gap-1 items-center">
           <PriorityBadge priority={projectDetails.priority} />
-          <ProjectPreviewMenu projectId={projectDetails.id} />
+          <ProjectPreviewMenu 
+            projectId={projectDetails.id} 
+            displayArchiveMenu={projectDetails.archived} 
+          />
         </div>
       </div>
 
@@ -36,14 +39,14 @@ export default function ProjectPreview({
           {projectDetails.tasks.length > 0 ? (
             <ButtonSecondary
               text='View Tasks'
-              onClick={() => { redirect(`/overview/projects/${projectDetails.id}`) }}
+              onClick={() => { redirect(`/projects/${projectDetails.id}`) }}
               small={true}
               forwardIcon={true}
             />
           ) : (
             <ButtonSecondary
               text='Add Task'
-              onClick={() => { redirect(`/overview/projects/${projectDetails.id}/tasks/create`) }}
+              onClick={() => { redirect(`/projects/${projectDetails.id}/tasks/create`) }}
               small={true}
               addIcon={true}
             />

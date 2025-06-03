@@ -43,7 +43,7 @@ export default function SignInForm({
       <div className="mt-10 w-full flex justify-center items-center">
         <ButtonPrimary 
           text="Sign In" 
-          onClick={() => { redirect("/overview") }}
+          onClick={() => { redirect("/projects") }}
           large={true}
         />
       </div>

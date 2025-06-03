@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { PrismaClient } from '@prisma/client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { z } from 'zod';
 
 const prisma = new PrismaClient();
@@ -56,14 +57,12 @@ export async function createProject(prevState: State, formData: FormData) {
       }
     });
   } catch (error) {
-    console.error('Prisma Error:', error);
-    return {
-      message: 'Database Error: Failed to Create Project.',
-    };
+    const prismaError = error as PrismaClientKnownRequestError;
+    console.log(prismaError.stack);
   }
 
-  revalidatePath('/overview');
-  redirect('/overview');
+  revalidatePath('/projects');
+  redirect('/projects');
 }
 
 /**
@@ -101,14 +100,12 @@ export async function editProject(projectId: number, prevState: State, formData:
       }
     });
   } catch (error) {
-    console.error('Prisma Error:', error);
-    return {
-      message: 'Database Error: Failed to Update Project.',
-    };
+    const prismaError = error as PrismaClientKnownRequestError;
+    console.log(prismaError.stack);
   }
 
-  revalidatePath('/overview');
-  redirect('/overview');
+  revalidatePath('/projects');
+  redirect('/projects');
 }
 
 /**
@@ -129,12 +126,55 @@ export async function archiveProject(projectId: number) {
       }
     });
   } catch (error) {
-    console.error('Prisma Error:', error);
-    return {
-      message: 'Database Error: Failed to Archive Project.',
-    };
+    const prismaError = error as PrismaClientKnownRequestError;
+    console.log(prismaError.stack);
   }
 
-  revalidatePath('/overview');
-  redirect('/overview');
+  revalidatePath('/projects');
+  redirect('/projects');
+}
+
+/**
+ * 
+ * @param projectId 
+ * @param prevState 
+ * @param formData 
+ * @returns 
+ */
+export async function activateProject(projectId: number) {
+  try {
+    await prisma.project.update({
+      where: {
+        id: projectId
+      },
+      data: {
+        archived: false
+      }
+    });
+  } catch (error) {
+    const prismaError = error as PrismaClientKnownRequestError;
+    console.log(prismaError.stack);
+  }
+
+  revalidatePath('/projects/archived');
+  redirect('/projects/archived');
+}
+
+/**
+ * 
+ * @param projectId 
+ * @returns 
+ */
+export async function deleteProject(projectId: number) {
+  try {
+    await prisma.project.delete({
+      where: { id: projectId }
+    });
+  } catch (error) {
+    const prismaError = error as PrismaClientKnownRequestError;
+    console.log(prismaError.stack);
+  }
+
+  revalidatePath('/projects/archived');
+  redirect('/projects/archived');
 }

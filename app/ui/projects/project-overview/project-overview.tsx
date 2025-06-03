@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { redirect } from 'next/navigation';
-import { ProjectTaskDTO } from '@/app/lib/dtos';
+import { ProjectTaskDTO } from '@/app/lib/types';
 import { deleteTask, editTaskStatus } from '@/app/lib/actions/tasks';
 import ProjectOverviewTasks from '@/app/ui/projects/project-overview/project-overview-tasks';
 import ProjectOverviewTabs from '@/app/ui/projects/project-overview/project-overview-tabs';
@@ -82,7 +82,7 @@ export default function ProjectOverview({
       <div className="pb-6">
         <ButtonPrimary
           text="Back"
-          onClick={() => { redirect(`/overview`) }}
+          onClick={() => { redirect(`/projects`) }}
           backIcon={true}
         />
       </div>
@@ -104,7 +104,7 @@ export default function ProjectOverview({
           />
 
           <ButtonPrimary
-            onClick={() => { redirect(`/overview/projects/${projectDetails.id}/tasks/create`) }}
+            onClick={() => { redirect(`/projects/${projectDetails.id}/tasks/create`) }}
             text="Add Task"
             addIcon={true}
           />
