@@ -47,7 +47,7 @@ export default function ProjectPreviewsHeader({
 
           <ButtonPrimary
             text="Convert"
-            onClick={() => { redirect("/projects/convert") }}
+            onClick={() => { redirect("/projects/transcript-tool") }}
             uploadIcon={true}
           ></ButtonPrimary>
 
