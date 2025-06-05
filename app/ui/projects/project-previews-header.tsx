@@ -16,19 +16,24 @@ export default function ProjectPreviewsHeader({
   const icon = displayActive ? <BookmarkIcon height={15} width={15} /> : <CheckBadgeIcon height={20} width={20} />;
 
   const menuItems: MenuItem[] = [
-    { icon: icon, label: (displayActive) ? 'Show Archived' : 'Show Active', onClick: () => { redirect(redirectString) } }
+    { 
+      icon: icon, 
+      label: (displayActive) ? 'Show Archived' : 'Show Active', 
+      onClick: () => { redirect(redirectString) } 
+    }
   ];
 
   return (
     <div className="flex justify-between items-start">
 
+      {/* Left Portion */}
       <div className="flex gap-4 items-center mb-8">
 
         <h5 className="font-sp text-4xl font-bold text-slate-700">
-          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Username's</span> Projects
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"></span> Projects Overview
         </h5>
 
-        <div className="h-10 flex justify-end items-end">
+        <div className="h-10 flex justify-end items-end mb-1">
           <DropdownMenu
             toggle={<ButtonSecondary
               text={displayActive ? 'Active' : 'Archived'}
@@ -42,6 +47,7 @@ export default function ProjectPreviewsHeader({
 
       </div>
 
+      {/* Right Buttons */}
       {displayActive &&
         <div className="flex gap-4">
 

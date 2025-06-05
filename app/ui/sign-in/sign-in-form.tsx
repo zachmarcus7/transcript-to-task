@@ -1,16 +1,18 @@
 "use client";
 
+import { useActionState } from "react";
+import { authenticate } from "@/app/lib/actions/authenticate";
 import Image from "next/image";
-import { redirect } from 'next/navigation';
 import ButtonPrimary from '@/app/ui/button-primary';
 
-export default function SignInForm({
-  handleCreateSwitch
-}: {
-  handleCreateSwitch: () => void
-}) {
+export default function SignInForm() {
+  const [errorMessage, formAction, isPending] = useActionState(
+    authenticate,
+    undefined
+  );
+
   return (
-    <>
+    <form action={formAction}>
       <div className="md:w-[650px]">
         <div className="w-full flex justify-center items-center mb-4">
 
@@ -30,27 +32,31 @@ export default function SignInForm({
         <p className="text-slate-400 text-xl font-normal text-center">Please enter your details below to use the app.</p>
       </div>
 
-      <input
-        className="w-full h-12 bg-white md:w-[500px] border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
-        placeholder="Email Address"
-      ></input>
+      <div className="flex flex-col items-center w-full mt-8">
 
-      <input
-        className="w-full h-12 bg-white md:w-[500px] border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
-        placeholder="Password"
-      ></input>
+        <input
+          className="w-full h-12 bg-white md:w-[500px] border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
+          placeholder="Username"
+          name="username"
+        ></input>
+
+        <input
+          className="w-full h-12 mt-4 bg-white md:w-[500px] border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
+          placeholder="Password"
+          name="password"
+        ></input>
+
+      </div>
 
       <div className="mt-10 w-full flex justify-center items-center">
-        <ButtonPrimary 
-          text="Sign In" 
-          onClick={() => { redirect("/projects") }}
+        <ButtonPrimary
+          text="Sign In"
+          onClick={() => { }}
           large={true}
+          isSubmit={true}
         />
       </div>
 
-      <div className="md:w-[650px]">
-        <p className="text-slate-400 text-xl font-normal text-center cursor-pointer" onClick={handleCreateSwitch}>Create New Account</p>
-      </div>
-    </>
+    </form>
   );
 }

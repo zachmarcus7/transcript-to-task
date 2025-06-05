@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import SignInContainer from '@/app/ui/sign-in/sign-in-container';
+import SignInForm from './ui/sign-in/sign-in-form';
 
 export default function Page() {
   return (
@@ -33,7 +33,7 @@ export default function Page() {
 
         {/* Form Section */}
         <div className="flex flex-col justify-center items-center gap-6 bg-slate-50 px-6 py-10 md:w-3/5 md:px-20">
-          <SignInContainer />
+          <SignInForm />
         </div>
 
       </div>
