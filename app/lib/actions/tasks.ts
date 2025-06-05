@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { PrismaClient } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { z } from 'zod';
-import { GroqTaskParsed, Task } from '@/app/lib/types';
+import { GroqTaskParsed } from '@/app/lib/types';
 
 const prisma = new PrismaClient();
 
@@ -21,7 +21,7 @@ const TaskSchema = z.object({
  * Form State Object.
  */
 export type State = {
-  errors?: {};
+  errors?: Record<string, unknown>; 
   message?: string | null;
 };
 

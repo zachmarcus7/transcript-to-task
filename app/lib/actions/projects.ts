@@ -21,7 +21,7 @@ const ProjectSchema = z.object({
  * Form State Object.
  */
 export type State = {
-  errors?: {};
+  errors?: Record<string, unknown>;
   message?: string | null;
 };
 
