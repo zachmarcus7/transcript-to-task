@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate --schema=./app/prisma/schema.prisma"
+    "postinstall": "prisma generate --schema=./app/prisma/schema.prisma && npm rebuild bcrypt"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
