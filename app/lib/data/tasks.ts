@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/app/lib/prisma';
 import { Task } from '@/app/lib/types';
-
-const prisma = new PrismaClient();
 
 /**
  * Retrieves a specific task.

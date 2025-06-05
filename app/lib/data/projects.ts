@@ -1,9 +1,7 @@
 'use server';
 
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/app/lib/prisma';
 import { ProjectTaskDTO, Project } from '@/app/lib/types';
-
-const prisma = new PrismaClient();
 
 /**
  * Retrieves all projects and their associated task lists.

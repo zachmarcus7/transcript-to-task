@@ -2,12 +2,10 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/app/lib/prisma';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { z } from 'zod';
 import { GroqTaskParsed } from '@/app/lib/types';
-
-const prisma = new PrismaClient();
 
 /**
  * Validation Object.
