@@ -13,25 +13,7 @@ This project was inspired by the need to streamline the process of turning hasti
 
 ### Project Structure
 
-├── app/
-│   ├── lib/
-│   │   ├── actions/           # Data actions
-│   │   ├── data/              # Data fetching
-│   │   └── types/             # Type definitions
-│   ├── prisma/                # Database schema and client setup
-│   ├── projects/              # Project-related routes and UI (Root page after authentication)
-│   ├── ui/                    # UI components
-│   ├── layout.tsx             # Root layout component
-│   └── page.tsx               # Home / sign-in page
-│
-├── public/                    # Static assets
-│
-├── auth.ts                    # Authentication logic
-├── middleware.ts              # Middleware for routing/auth
-├── package.json
-├── README.md
-└── tsconfig.json
-
+<pre> <code>```text ├── app/ │ ├── lib/ │ │ ├── actions/ # Data actions │ │ ├── data/ # Data fetching │ │ └── types/ # Type definitions │ ├── prisma/ # Database schema and client setup │ ├── projects/ # Project-related routes and UI (Root page after authentication) │ ├── ui/ # UI components │ ├── layout.tsx # Root layout component │ └── page.tsx # Home / sign-in page │ ├── public/ # Static assets │ ├── auth.ts # Authentication logic ├── middleware.ts # Middleware for routing/auth ├── package.json ├── README.md └── tsconfig.json ```</code> </pre>
 ## Environment Variables
 
 Add the following variables to your `.env` file (replace `********` with your actual values):
