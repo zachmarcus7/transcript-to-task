@@ -7,7 +7,7 @@ import { deleteTask, editTaskStatus } from '@/app/lib/actions/tasks';
 import ProjectOverviewTasks from '@/app/ui/projects/project-overview/project-overview-tasks';
 import ProjectOverviewTabs from '@/app/ui/projects/project-overview/project-overview-tabs';
 import ButtonPrimary from '@/app/ui/button-primary';
-import PriorityBadge from '../../priority-badge';
+import PriorityBadge from '@/app/ui/priority-badge';
 
 export default function ProjectOverview({
   projectDetails
@@ -23,17 +23,13 @@ export default function ProjectOverview({
   if (tab === 'pending') currentTaskAction = 'Mark As Complete';
   if (tab === 'complete') currentTaskAction = 'Remove Task';
 
-  /**
-   * 
-   * @param newTab 
-   */
   const handleTabChange = (newTab: 'in_progress' | 'pending' | 'complete') => {
     setTab(newTab);
   }
 
   /**
-   * 
-   * @param taskId 
+   * Updates the corresponding task depending on the current tab selected.
+   * @param taskId - Task ID.
    */
   const handleTaskUpdate = async (taskId: number) => {
     setSelectedTask(taskId);
@@ -41,11 +37,11 @@ export default function ProjectOverview({
     if (tab !== 'complete') {
       try {
         // update task status
-        let status = (tab === 'pending') ? 'complete' : 'pending';
+        const status = (tab === 'pending') ? 'complete' : 'pending';
         await editTaskStatus(taskId, status);
 
         // update current tasks for UI
-        let nextTasks = tasks.map(task => {
+        const nextTasks = tasks.map(task => {
           if (task.id === taskId) {
             console.log("in here");
             return {

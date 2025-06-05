@@ -27,7 +27,7 @@ export default function EditProjectForm({
 
       <div className="bg-white rounded-2xl shadow-sm p-6">
         <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">Edit {project.name}</h5>
-        <h6 className="text-sm text-slate-500 font-medium pb-5">Edit the selected project's details below</h6>
+        <h6 className="text-sm text-slate-500 font-medium pb-5">Edit the selected project&apos;s details below</h6>
 
          <form action={formAction}>
 

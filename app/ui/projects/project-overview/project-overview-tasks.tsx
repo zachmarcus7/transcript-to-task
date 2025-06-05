@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { CheckIcon, PencilIcon } from '@heroicons/react/24/outline';
 import TooltipContainer from '@/app/ui/tooltip';
 import { ProjectTaskDTO, Task } from '@/app/lib/types';
-import ProjectOverviewTaskPriority from './project-overview-task-priority';
+import ProjectOverviewTaskPriority from '@/app/ui/projects/project-overview/project-overview-task-priority';
 
 export default function ProjectOverviewTasks({
   tasks,
