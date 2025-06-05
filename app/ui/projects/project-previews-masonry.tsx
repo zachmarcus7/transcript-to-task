@@ -2,14 +2,13 @@
 
 import { Masonry } from 'react-plock';
 import ProjectPreview from "@/app/ui/projects/project-preview/project-preview";
-import { ProjectTaskDTO } from '@/app/lib/dtos';
+import { ProjectTaskDTO } from '@/app/lib/types';
 
-export default function ProjectOverviewsMasonry({
+export default function ProjectPreviewsMasonry({
   projects
 }: {
   projects: ProjectTaskDTO[]
 }) {
-
   return (
     <Masonry
       items={projects}

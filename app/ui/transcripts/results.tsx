@@ -7,14 +7,21 @@ import ProjectOverviewTaskPriority from '@/app/ui/projects/project-overview/proj
 import { GroqTaskParsed } from "@/app/lib/types/groq-response";
 
 export default function TranscriptResults({
-  tasks
+  tasks,
+  acceptedTasks,
+  onTaskClick,
+  onUpload
 }: {
-  tasks: GroqTaskParsed[]
+  tasks: GroqTaskParsed[];
+  acceptedTasks: GroqTaskParsed[];
+  onTaskClick: (task: GroqTaskParsed) => void;
+  onUpload: () => void
 }) {
   return (
     <div className="bg-white rounded-2xl shadow-sm p-6">
       <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">Converstion Results</h5>
-      <h6 className="text-sm text-slate-500 font-medium pb-5">View AI recommendations for parsed tasks from the transcript below. Use the right checkboxes to select which tasks to add to the project.</h6>
+      <h6 className="text-sm text-slate-500 font-medium">Here are the AI recommendations for tasks parsed from the uploaded transcript.</h6>
+      <h6 className="text-sm text-slate-500 font-medium pb-5">Use the right checkboxes to select which tasks to add to the project.</h6>
 
       <ul className="pt-3">
         {tasks.map(task => (
@@ -29,8 +36,8 @@ export default function TranscriptResults({
 
               <TooltipContainer message="Confirm Task">
                 <div
-                  className={`p-1 shrink-0 rounded-full border border-slate-300 cursor-pointer hover:bg-slate-200 transition-all ease h-fit`}
-                  onClick={() => { }}
+                  className={`p-1 shrink-0 rounded-full border border-slate-300 cursor-pointer transition-all ease h-fit ${acceptedTasks.includes(task) ? 'bg-purpleish-600' : 'hover:bg-slate-200'}`}
+                  onClick={() => {  onTaskClick(task) }}
                 >
                   <CheckIcon
                     height={15}
@@ -48,7 +55,7 @@ export default function TranscriptResults({
       <div className="flex justify-end mt-4">
         <ButtonPrimary
           text="Finish"
-          onClick={() => { }}
+          onClick={() => {  onUpload() }}
         ></ButtonPrimary>
       </div>
 

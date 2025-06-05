@@ -1,3 +1,4 @@
+export * from '@/app/lib/types/groq-response';
 export * from '@/app/lib/types/menu-item';
 export * from '@/app/lib/types/project';
 export * from '@/app/lib/types/project-task-dto';

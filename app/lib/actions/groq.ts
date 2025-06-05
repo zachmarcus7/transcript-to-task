@@ -1,7 +1,7 @@
 'use server';
 
 import { fetchGroqTranscriptParse } from "@/app/lib/data/groq";
-import { GroqResponse, GroqTaskParsed } from "../types/groq-response";
+import { GroqResponse, GroqTaskParsed } from "@/app/lib/types/groq-response";
 
 export async function parseTranscriptGroq(formData: FormData): Promise<GroqTaskParsed[] | null> {
   const transcript = formData.get('transcript') as string;

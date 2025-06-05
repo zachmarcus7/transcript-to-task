@@ -1,3 +1,5 @@
+import { GroqResponse } from "@/app/lib/types/groq-response";
+
 const GROQ_API_KEY = "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";
 const GROQ_API_BASE = "https://api.groq.com/openai/v1/chat/completions";
 
@@ -6,7 +8,7 @@ const GROQ_API_BASE = "https://api.groq.com/openai/v1/chat/completions";
  * @param transcript 
  * @returns 
  */
-export async function fetchGroqTranscriptParse(transcript: string) {
+export async function fetchGroqTranscriptParse(transcript: string): Promise<GroqResponse> {
   const res = await fetch(GROQ_API_BASE, {
     method: 'POST',
     headers: {
@@ -18,7 +20,7 @@ export async function fetchGroqTranscriptParse(transcript: string) {
       messages: [
         {
           role: "user",
-          content: `Convert this transcript into a list of potential tasks. Return ONLY a raw JSON array starting directly with the opening bracket. Do NOT include markdown, explanations, or code blocks. Each task should follow this format: { \"description\": \"task description\", \"priority\": \"1 (critical)\" to \"4 (low)\" }: ${transcript} `
+          content: `Convert the transcript at the end of this message to a task list. Return ONLY a raw JSON array starting directly with the opening bracket. Do NOT include markdown, explanations, or code blocks. Each task should follow this format: { \"description\": \"task description\", \"priority\": \"1-4" }. TRANSCRIPT START: ${transcript} `
         }
       ]
     })

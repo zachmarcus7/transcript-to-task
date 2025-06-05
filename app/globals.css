@@ -26,3 +26,13 @@
   rgb(134, 157, 249) 100%
   );
 }
+
+.shimmer {  
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

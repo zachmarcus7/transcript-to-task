@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { PrismaClient } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { z } from 'zod';
+import { GroqTaskParsed, Task } from '@/app/lib/types';
 
 const prisma = new PrismaClient();
 
@@ -57,6 +58,40 @@ export async function createTask(projectId: number, prevState: State, formData: 
   } catch (error) {
     const prismaError = error as PrismaClientKnownRequestError;
     console.log(prismaError.stack);
+  }
+
+  revalidatePath(`/projects/${projectId}`);
+  redirect(`/projects/${projectId}`);
+}
+
+/**
+ * 
+ * @param projectId 
+ * @param prevState 
+ * @param formData 
+ * @returns 
+ */
+export async function createMultipleTasks(projectId: number, tasks: GroqTaskParsed[]) {
+  try {
+    const convertedTasks = tasks.map(task => {
+      if (task.description.length > 200) {
+        task.description = task.description.substring(0, 200);
+      }
+
+      return {
+        projectId: projectId,
+        priority: Number(task.priority),
+        description: task.description
+      }
+    });
+
+    await prisma.task.createMany({
+      data: convertedTasks
+    });
+  } catch (error) {
+    const prismaError = error as PrismaClientKnownRequestError;
+    console.error(prismaError.stack);
+    return { message: 'Failed to create tasks due to a database error.' };
   }
 
   revalidatePath(`/projects/${projectId}`);
