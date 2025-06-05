@@ -26,11 +26,12 @@ export type State = {
 };
 
 /**
- * 
- * @param projectId 
- * @param prevState 
- * @param formData 
- * @returns 
+ * Validates form data and creates a new task associated with a specific project.
+ *
+ * @param projectId - The ID of the project to which the task belongs.
+ * @param prevState - The previous form state, used to preserve error or status information.
+ * @param formData - A FormData object containing task input fields: description and priority.
+ * @returns An object with validation errors and a message if validation fails; otherwise, redirects to the project page.
  */
 export async function createTask(projectId: number, prevState: State, formData: FormData) {
   const validatedFields = TaskSchema.safeParse({
@@ -65,11 +66,11 @@ export async function createTask(projectId: number, prevState: State, formData: 
 }
 
 /**
- * 
- * @param projectId 
- * @param prevState 
- * @param formData 
- * @returns 
+ * Creates multiple tasks for a given project after truncating descriptions longer than 200 characters.
+ *
+ * @param projectId - The ID of the project to which the tasks belong.
+ * @param tasks - An array of GroqTaskParsed objects representing the tasks to create.
+ * @returns An error message object if the database operation fails; otherwise, redirects to the project page.
  */
 export async function createMultipleTasks(projectId: number, tasks: GroqTaskParsed[]) {
   try {
@@ -99,11 +100,12 @@ export async function createMultipleTasks(projectId: number, tasks: GroqTaskPars
 }
 
 /**
- * 
- * @param taskId 
- * @param prevState 
- * @param formData 
- * @returns 
+ * Validates and updates an existing task with new description and priority.
+ *
+ * @param taskId - The ID of the task to be updated.
+ * @param prevState - The previous form state, used to preserve validation errors or status.
+ * @param formData - A FormData object containing updated task fields: description and priority.
+ * @returns An object with validation errors and a message if validation fails; otherwise, redirects to the related project page.
  */
 export async function editTask(taskId: number, prevState: State, formData: FormData) {
   const validatedFields = TaskSchema.safeParse({
@@ -140,11 +142,9 @@ export async function editTask(taskId: number, prevState: State, formData: FormD
 }
 
 /**
- * 
- * @param taskId 
- * @param prevState 
- * @param formData 
- * @returns 
+ * Updates the status of a specific task.
+ * @param taskId - Task ID.
+ * @param newStatus - String ('in_progress', 'pending', 'complete').
  */
 export async function editTaskStatus(taskId: number, newStatus: string) {
   console.log(newStatus);
@@ -164,9 +164,8 @@ export async function editTaskStatus(taskId: number, newStatus: string) {
 }
 
 /**
- * 
- * @param taskId 
- * @returns 
+ * Completely removes task record from database.
+ * @param taskId - Task ID.
  */
 export async function deleteTask(taskId: number) {
   try {

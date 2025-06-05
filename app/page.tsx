@@ -1,14 +1,13 @@
 import Image from 'next/image';
-import SignInForm from './ui/sign-in/sign-in-form';
+import SignInForm from '@/app/ui/sign-in/sign-in-form';
 
 export default function Page() {
   return (
     <main className="flex min-h-screen flex-col">
-
       <div className="flex grow flex-col md:flex-row">
 
         {/* Image Section */}
-        <div className="relative flex items-center justify-center md:w-2/5">
+        <section className="relative flex items-center justify-center md:w-2/5">
           <Image
             src="/landing-page-bg.jpg"
             alt="landing page design"
@@ -24,20 +23,19 @@ export default function Page() {
                 <span className="block">Actionable Tasks</span>
               </h4>
               <p className="text-slate-100 font-normal text-base 3xl:text-xl ">
-                <span className="block">To access, please sign in below more</span>
-                <span className="block">and here are some.</span>
+                <span className="block">With Transcript To Task, you can integrate AI</span>
+                <span className="block">task-parsing into your workflow.</span>
               </p>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Form Section */}
-        <div className="flex flex-col justify-center items-center gap-6 bg-slate-50 px-6 py-10 md:w-3/5 md:px-20">
+        <section className="flex flex-col justify-center items-center gap-6 bg-slate-50 px-6 py-10 md:w-3/5 md:px-20">
           <SignInForm />
-        </div>
+        </section>
 
       </div>
-
     </main>
   );
 }

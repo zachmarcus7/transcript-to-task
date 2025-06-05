@@ -13,9 +13,11 @@ export default function SignInForm() {
 
   return (
     <form action={formAction}>
-      <div className="md:w-[650px]">
-        <div className="w-full flex justify-center items-center mb-4">
 
+      {/* Top Section */}
+      <div className="md:w-[650px]">
+
+        <div className="w-full flex justify-center items-center mb-4">
           <div className="relative flex justify-center items-center">
             <div className="absolute bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl h-[50px] w-[50px] z-1"></div>
             <Image
@@ -26,12 +28,19 @@ export default function SignInForm() {
               className="z-10"
             ></Image>
           </div>
-
         </div>
+
         <h5 className="font-sp text-4xl mb-8 font-bold text-center text-slate-700">Sign in to <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Transcript To Task</span></h5>
-        <p className="text-slate-400 text-xl font-normal text-center">Please enter your details below to use the app.</p>
+        
+        {(errorMessage) ? (
+          <p className="text-slate-400 text-xl font-normal text-center">User info not found. Please try again.</p>
+        ) : (
+          <p className="text-slate-400 text-xl font-normal text-center">Please enter your details below to use the app.</p>
+        )}
+
       </div>
 
+      {/* Inputs */}
       <div className="flex flex-col items-center w-full mt-8">
 
         <input
@@ -44,6 +53,7 @@ export default function SignInForm() {
           className="w-full h-12 mt-4 bg-white md:w-[500px] border border-slate-200 rounded-xl pl-5 placeholder:text-slate-300 focus:outline-none focus:border-purpleish-600"
           placeholder="Password"
           name="password"
+          type="password"
         ></input>
 
       </div>
@@ -54,6 +64,7 @@ export default function SignInForm() {
           onClick={() => { }}
           large={true}
           isSubmit={true}
+          loading={isPending}
         />
       </div>
 

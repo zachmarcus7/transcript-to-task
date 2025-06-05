@@ -26,11 +26,11 @@ export type State = {
 };
 
 /**
- * 
- * @param projectId 
- * @param prevState 
- * @param formData 
- * @returns 
+ * Validates form data and creates a new project in the database.
+ *
+ * @param prevState - The previous form state, typically used to retain error or status information.
+ * @param formData - A FormData object containing project input fields: name, description, and priority.
+ * @returns An object with validation errors and message if validation fails; otherwise, redirects to the projects page.
  */
 export async function createProject(prevState: State, formData: FormData) {
   const validatedFields = ProjectSchema.safeParse({
@@ -66,11 +66,11 @@ export async function createProject(prevState: State, formData: FormData) {
 }
 
 /**
- * 
- * @param projectId 
- * @param prevState 
- * @param formData 
- * @returns 
+ * Validates form data and edits an existing project in the database.
+ *
+ * @param prevState - The previous form state, typically used to retain error or status information.
+ * @param formData - A FormData object containing project input fields: name, description, and priority.
+ * @returns An object with validation errors and message if validation fails; otherwise, redirects to the projects page.
  */
 export async function editProject(projectId: number, prevState: State, formData: FormData) {
   const validatedFields = ProjectSchema.safeParse({
@@ -109,11 +109,8 @@ export async function editProject(projectId: number, prevState: State, formData:
 }
 
 /**
- * 
- * @param projectId 
- * @param prevState 
- * @param formData 
- * @returns 
+ * Marks an active project as archived.
+ * @param projectId - Project ID.
  */
 export async function archiveProject(projectId: number) {
   try {
@@ -135,11 +132,8 @@ export async function archiveProject(projectId: number) {
 }
 
 /**
- * 
- * @param projectId 
- * @param prevState 
- * @param formData 
- * @returns 
+ * Marks an archived project as active.
+ * @param projectId - Project ID.
  */
 export async function activateProject(projectId: number) {
   try {
@@ -161,9 +155,8 @@ export async function activateProject(projectId: number) {
 }
 
 /**
- * 
- * @param projectId 
- * @returns 
+ * Completely removes project details and corresponding tasks.
+ * @param projectId - Project ID.
  */
 export async function deleteProject(projectId: number) {
   try {

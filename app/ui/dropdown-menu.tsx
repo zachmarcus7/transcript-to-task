@@ -14,7 +14,8 @@ export default function DropdownMenu({
   const menuRef = useRef<HTMLDivElement>(null);
 
   /**
-   * 
+   * Closes the menu when a click occurs outside of the 
+   * menu element.
    */
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -32,7 +33,7 @@ export default function DropdownMenu({
   return (
     <div className="relative" ref={menuRef}>
 
-      {/* Element that toggles dropdown menu */}
+      {/* Toggle for dropdown menu */}
       <div onClick={() => setOpen(!open)}>
         {toggle}
       </div>

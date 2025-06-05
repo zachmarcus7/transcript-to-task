@@ -35,14 +35,13 @@ export default function ButtonPrimary({
         relative
         bg-purpleish-500
         rounded-full
-        shadow-xl 
         hover:bg-purpleish-600 
         transition-all ease
         flex
         justify-center
         items-center
         ${large ? 'lg:w-66 lg:h-14' : 'lg:w-48 lg:h-10'}
-        ${(disabled || loading) ? 'cursor-not-allowed bg-purpleish-600' : 'cursor-pointer'}
+        ${(disabled || loading) ? 'cursor-not-allowed bg-purpleish-600' : 'cursor-pointer shadow-xl'}
       `}
     >
       {uploadIcon && 
@@ -74,6 +73,7 @@ export default function ButtonPrimary({
       }
 
       {loading && <div className="loader-circle"></div>}
+      
     </button>
   );
 }

@@ -1,7 +1,8 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import { authConfig } from './auth.config';
+import bcrypt from 'bcrypt';
 import { z } from 'zod';
+import { authConfig } from './auth.config';
 import { fetchUser } from './app/lib/data/users';
  
 export const { auth, signIn, signOut } = NextAuth({
@@ -19,15 +20,20 @@ export const { auth, signIn, signOut } = NextAuth({
           const { username, password } = parsedCredentials.data;
           const user = await fetchUser(username);
 
+          // if no matching username found
           if (!user)
             return null;
 
-          // TODO: need to compare password with bcrypt
+          // check if passwords match
+          const passwordsMatch = await bcrypt.compare(password, user.password);
+          if (passwordsMatch) {
+            return {
+              id: user.id.toString(),
+              username: user.username,
+            };
+          }
 
-          return {
-            id: user.id.toString(),
-            username: user.username,
-          };
+          return null;
         }
  
         return null;

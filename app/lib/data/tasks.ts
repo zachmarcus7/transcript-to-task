@@ -4,8 +4,8 @@ import { Task } from '@/app/lib/types';
 const prisma = new PrismaClient();
 
 /**
- * 
- * @returns 
+ * Retrieves a specific task.
+ * @returns - Task object or null if not found.
  */
 export async function fetchTask(taskId: number): Promise<Task | null> {
   try {

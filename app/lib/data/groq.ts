@@ -4,9 +4,10 @@ const GROQ_API_KEY = "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";
 const GROQ_API_BASE = "https://api.groq.com/openai/v1/chat/completions";
 
 /**
- * 
- * @param transcript 
- * @returns 
+ * Sends a request to the Groq API to attempt to parse the passed transcript into an
+ * array of tasks.
+ * @param transcript - Transcript to parse (string).
+ * @returns - Array of GroqResponse objects.
  */
 export async function fetchGroqTranscriptParse(transcript: string): Promise<GroqResponse> {
   const res = await fetch(GROQ_API_BASE, {

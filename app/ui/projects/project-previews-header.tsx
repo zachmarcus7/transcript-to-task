@@ -35,12 +35,14 @@ export default function ProjectPreviewsHeader({
 
         <div className="h-10 flex justify-end items-end mb-1">
           <DropdownMenu
-            toggle={<ButtonSecondary
-              text={displayActive ? 'Active' : 'Archived'}
-              onClick={() => { }}
-              small={true}
-              downIcon={true}
-            />}
+            toggle={
+              <ButtonSecondary
+                text={displayActive ? 'Active' : 'Archived'}
+                onClick={() => { }}
+                small={true}
+                downIcon={true}
+              />
+            }
             items={menuItems}
           />
         </div>

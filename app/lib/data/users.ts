@@ -4,8 +4,8 @@ import { User } from '@/app/lib/types';
 const prisma = new PrismaClient();
 
 /**
- * 
- * @returns 
+ * Retrieves a specific user record.
+ * @returns - User object or null if username not found.
  */
 export async function fetchUser(username: string): Promise<User | null> {
   console.log("in fetchUser()");

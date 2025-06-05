@@ -6,8 +6,8 @@ import { ProjectTaskDTO, Project } from '@/app/lib/types';
 const prisma = new PrismaClient();
 
 /**
- * 
- * @returns 
+ * Retrieves all projects and their associated task lists.
+ * @returns - Array of ProjectTaskDTO objects.
  */
 export async function fetchProjects(active: boolean): Promise<ProjectTaskDTO[]> {
   try {
@@ -37,8 +37,8 @@ export async function fetchProjects(active: boolean): Promise<ProjectTaskDTO[]> 
 }
 
 /**
- * 
- * @returns 
+ * Retrieves a specific project and its associated task list.
+ * @returns - ProjectTaskDTO object or null if project not found.
  */
 export async function fetchProjectWithTasks(projectId: number): Promise<ProjectTaskDTO | null> {
   try {
@@ -63,8 +63,8 @@ export async function fetchProjectWithTasks(projectId: number): Promise<ProjectT
 }
 
 /**
- * 
- * @returns 
+ * Retrieves a specific project.
+ * @returns - Project object or null if not found.
  */
 export async function fetchProject(projectId: number): Promise<Project | null> {
   try {
