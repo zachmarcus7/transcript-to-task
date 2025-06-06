@@ -37,7 +37,7 @@ export default function ProjectOverviewTasks({
             <TooltipContainer message="Edit Task">
               <div
                 className={`p-1 shrink-0 rounded-full border border-slate-300 cursor-pointer hover:bg-slate-200 transition-all ease h-fit`}
-                onClick={() => { redirect(`/overview/projects/${projectDetails.id}/tasks/${task.id}/edit`) }}
+                onClick={() => { redirect(`/projects/${projectDetails.id}/tasks/${task.id}/edit`) }}
               >
                 <PencilIcon
                   height={15}
