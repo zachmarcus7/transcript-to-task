@@ -19,7 +19,7 @@ export default function TranscriptResults({
 }) {
   return (
     <div className="bg-white rounded-2xl shadow-sm p-6">
-      <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">Converstion Results</h5>
+      <h5 className="text-lg text-slate-700 font-sp font-extrabold pb-2">Conversion Results</h5>
       <h6 className="text-sm text-slate-500 font-medium">Here are the AI recommendations for tasks parsed from the uploaded transcript.</h6>
       <h6 className="text-sm text-slate-500 font-medium pb-5">Use the right checkboxes to select which tasks to add to the project.</h6>
 
