@@ -20,11 +20,14 @@
 }
 
 .landing-gradient {
+  background: -webkit-linear-gradient(120deg, 
+    rgb(119, 142, 252) 0%, 
+    rgb(154, 175, 248) 50%, 
+    rgb(134, 157, 249) 100%);
   background: linear-gradient(120deg, 
-  rgb(119, 142, 252) 0%, 
-  rgb(154, 175, 248) 50%, 
-  rgb(134, 157, 249) 100%
-  );
+    rgb(119, 142, 252) 0%, 
+    rgb(154, 175, 248) 50%, 
+    rgb(134, 157, 249) 100%);
 }
 
 .loader-circle {

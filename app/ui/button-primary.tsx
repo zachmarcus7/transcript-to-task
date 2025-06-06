@@ -40,7 +40,7 @@ export default function ButtonPrimary({
         flex
         justify-center
         items-center
-        ${large ? 'lg:w-66 lg:h-14' : 'lg:w-48 lg:h-10'}
+        ${large ? 'w-48 h-10 lg:w-66 lg:h-14' : 'lg:w-48 lg:h-10'}
         ${(disabled || loading) ? 'cursor-not-allowed bg-purpleish-600' : 'cursor-pointer shadow-xl'}
       `}
     >
